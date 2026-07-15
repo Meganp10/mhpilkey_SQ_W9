@@ -2,7 +2,7 @@
 
 ## Assets
 
-No external assets used. All visuals are generated with p5.js.
+No external assets used.
 
 ## References
 
