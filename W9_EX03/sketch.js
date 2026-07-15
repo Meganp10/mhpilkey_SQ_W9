@@ -49,6 +49,10 @@ const CARD_H = 220;
 let levelData = {};
 
 // ------------------------------------------------------------
+// DEBUG
+// ------------------------------------------------------------
+let showDebug = false;
+// ------------------------------------------------------------
 // GAME DATA
 // deck        — shuffled array of card objects for this level
 // deckIndex   — which card in the deck is currently shown
@@ -113,6 +117,11 @@ function draw() {
     drawWinScreen();
   } else if (gameState === STATE_OVER) {
     drawGameOver();
+  }
+
+  // Always draw debug panel last
+  if (showDebug) {
+    drawDebugPanel();
   }
 }
 
@@ -480,6 +489,26 @@ function drawGameOver() {
   text("Click to try again", width / 2, height / 2 + 40);
 }
 
+// ------------------------------------------------------------
+// drawDebugPanel()
+// ------------------------------------------------------------
+function drawDebugPanel() {
+  push();
+
+  // Blue panel
+  fill(40, 100, 255, 220);
+  noStroke();
+  rect(20, 20, 220, 120, 10);
+
+  // Title
+  fill(255);
+  textAlign(LEFT);
+  textSize(18);
+  text("DEBUG PANEL", 35, 50);
+
+  pop();
+}
+
 // ============================================================
 // INPUT
 // ============================================================
@@ -508,7 +537,6 @@ function mousePressed() {
   }
 }
 
-// ------------------------------------------------------------
 // keyPressed()
 // No debug shortcuts yet — add them here in the side quest!
 //
@@ -517,7 +545,9 @@ function mousePressed() {
 // Use key === "s" or "w" to jump to start or win screens.
 // ------------------------------------------------------------
 function keyPressed() {
-  // YOUR DEBUG CODE GOES HERE
+  if (key === "d" || key === "D") {
+    showDebug = !showDebug;
+  }
 }
 
 // ------------------------------------------------------------
