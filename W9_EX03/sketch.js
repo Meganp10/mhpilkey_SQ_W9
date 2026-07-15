@@ -523,12 +523,10 @@ function drawDebugPanel() {
   let y = panelY + 70;
   let lineSpacing = 35;
 
-  text("1 - Jump to Level 1", x, y);
-  text("2 - Jump to Level 2", x, y + lineSpacing);
-  text("3 - Jump to Level 3", x, y + lineSpacing * 2);
-  text("S - Jump to Start Screen", x, y + lineSpacing * 3);
-  text("W - Jump to Win Screen", x, y + lineSpacing * 4);
-  text("O - Jump to Game Over Screen", x, y + lineSpacing * 5);
+  text("1, 2, 3 - Jump directly to that Level ", x, y);
+  text("S - Jump to Start Screen", x, y + lineSpacing);
+  text("W - Jump to Win Screen", x, y + lineSpacing * 2);
+  text("O - Jump to Game Over Screen", x, y + lineSpacing * 3);
 
   pop();
 }
