@@ -495,17 +495,19 @@ function drawGameOver() {
 function drawDebugPanel() {
   push();
 
-  // Panel size (80% of the canvas)
+  // Dark overlay
+  fill(0, 180);
+  noStroke();
+  rect(0, 0, width, height);
+
+  // Panel size (80% of canvas)
   let panelW = width * 0.8;
   let panelH = height * 0.8;
-
-  // Center the panel
   let panelX = (width - panelW) / 2;
   let panelY = (height - panelH) / 2;
 
   // Blue panel
-  fill(40, 100, 255);
-  noStroke();
+  fill(40, 100, 255, 240);
   rect(panelX, panelY, panelW, panelH, 15);
 
   // Title
@@ -513,6 +515,20 @@ function drawDebugPanel() {
   textAlign(LEFT, TOP);
   textSize(24);
   text("DEBUG PANEL", panelX + 20, panelY + 20);
+
+  // Keyboard shortcuts
+  textSize(18);
+
+  let x = panelX + 30;
+  let y = panelY + 70;
+  let lineSpacing = 35;
+
+  text("1 - Jump to Level 1", x, y);
+  text("2 - Jump to Level 2", x, y + lineSpacing);
+  text("3 - Jump to Level 3", x, y + lineSpacing * 2);
+  text("S - Jump to Start Screen", x, y + lineSpacing * 3);
+  text("W - Jump to Win Screen", x, y + lineSpacing * 4);
+  text("O - Jump to Game Over Screen", x, y + lineSpacing * 5);
 
   pop();
 }
@@ -553,11 +569,51 @@ function mousePressed() {
 // Use key === "s" or "w" to jump to start or win screens.
 // ------------------------------------------------------------
 function keyPressed() {
+  // Toggle debug panel
   if (key === "d" || key === "D") {
     showDebug = !showDebug;
+    return;
+  }
+
+  // Jump to Level 1
+  if (key === "1") {
+    loadLevel(1);
+    gameState = STATE_PLAY;
+    showDebug = false;
+  }
+
+  // Jump to Level 2
+  else if (key === "2") {
+    loadLevel(2);
+    gameState = STATE_PLAY;
+    showDebug = false;
+  }
+
+  // Jump to Level 3
+  else if (key === "3") {
+    loadLevel(3);
+    gameState = STATE_PLAY;
+    showDebug = false;
+  }
+
+  // Jump to Start Screen
+  else if (key === "s" || key === "S") {
+    gameState = STATE_START;
+    showDebug = false;
+  }
+
+  // Jump to Win Screen
+  else if (key === "w" || key === "W") {
+    gameState = STATE_WIN;
+    showDebug = false;
+  }
+
+  // Jump to Game Over Screen
+  else if (key === "o" || key === "O") {
+    gameState = STATE_OVER;
+    showDebug = false;
   }
 }
-
 // ------------------------------------------------------------
 // isMouseOverButton(btn)
 // Returns true if the mouse is inside the button rectangle.
