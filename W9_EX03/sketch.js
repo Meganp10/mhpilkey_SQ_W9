@@ -495,16 +495,24 @@ function drawGameOver() {
 function drawDebugPanel() {
   push();
 
+  // Panel size (80% of the canvas)
+  let panelW = width * 0.8;
+  let panelH = height * 0.8;
+
+  // Center the panel
+  let panelX = (width - panelW) / 2;
+  let panelY = (height - panelH) / 2;
+
   // Blue panel
-  fill(40, 100, 255, 220);
+  fill(40, 100, 255);
   noStroke();
-  rect(20, 20, 220, 120, 10);
+  rect(panelX, panelY, panelW, panelH, 15);
 
   // Title
   fill(255);
-  textAlign(LEFT);
-  textSize(18);
-  text("DEBUG PANEL", 35, 50);
+  textAlign(LEFT, TOP);
+  textSize(24);
+  text("DEBUG PANEL", panelX + 20, panelY + 20);
 
   pop();
 }
